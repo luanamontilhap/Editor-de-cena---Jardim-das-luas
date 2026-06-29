@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Jardim das luas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- MENU ESQUERDO -->
+    <div id="ui-container">
+        <h2>Controles</h2>
+
+        <div class="control-group state-controls">
+            <button id="btn-save">Salvar Cena (JSON)</button>
+
+            <input type="file"
+                   id="state-loader"
+                   accept=".json"
+                   style="display:none;">
+
+            <button id="btn-load"
+                    onclick="document.getElementById('state-loader').click()">
+                Carregar Cena
+            </button>
+
+            <button id="btn-remove"
+                    style="background:#432349;">
+                Remover Selecionado
+            </button>
+        </div>
+
+        <div class="control-group">
+            <label>Objeto Selecionado</label>
+            <select id="item-list"></select>
+        </div>
+
+        <div class="control-group">
+            <label>Projeção</label>
+            <select id="projection-type">
+                <option value="perspective">Perspectiva</option>
+                <option value="orthographic">Ortográfica</option>
+            </select>
+        </div>
+
+        <h3>Transformações</h3>
+
+        <div class="control-group">
+            <label>Translação X</label>
+            <input id="trans-x" type="range" min="-5" max="5" step="0.1">
+
+            <label>Translação Y</label>
+            <input id="trans-y" type="range" min="-5" max="5" step="0.1">
+
+            <label>Translação Z</label>
+            <input id="trans-z" type="range" min="-10" max="-1" step="0.1">
+        </div>
+
+        <div class="control-group">
+            <label>Rotação X</label>
+            <input id="rot-x" type="range" min="0" max="360">
+
+            <label>Rotação Y</label>
+            <input id="rot-y" type="range" min="0" max="360">
+
+            <label>Rotação Z</label>
+            <input id="rot-z" type="range" min="0" max="360">
+        </div>
+
+        <div class="control-group">
+            <label>Escala</label>
+            <input id="scale"
+                   type="range"
+                   min="0.1"
+                   max="3"
+                   step="0.1">
+        </div>
+
+        <div class="control-group">
+            <label>Conectar ao Pai (Hierarquia)</label>
+            <select id="parent-select">
+                <option value="-1">Nenhum (Solto no Mundo)</option>
+            </select>
+        </div>
+
+        <div class="control-group" style="background: rgba(0,0,0,0.1); padding: 10px; border-radius: 8px;">
+            <label>
+                <input type="checkbox" id="anim-active"> Ativar Animação (Girar)
+            </label>
+            <label>Eixo de Rotação</label>
+            <select id="anim-axis">
+                <option value="y">Eixo Y (Girar de lado)</option>
+                <option value="x">Eixo X (Girar de frente)</option>
+                <option value="z">Eixo Z (Como ponteiro)</option>
+            </select>
+            <label>Velocidade / Direção</label>
+            <input id="anim-speed" type="range" min="-100" max="100" step="1" value="20">
+        </div>
+
+        <div class="control-group" id="textura-group">
+            <label>Textura</label>
+            <select id="textura-select"></select>
+        </div>
+        
+    </div>
+
+    <!-- CENA -->
+    <div id="canvas-container">
+        <canvas id="webgl-canvas"></canvas>
+    </div>
+
+    <!-- MODELOS -->
+    <div id="model-container">
+        <h2>Modelos</h2>
+        <!-- Os cards de modelo (com preview 3D) são gerados
+             dinamicamente pelo trabalho.js a partir do catalogoModelos -->
+    </div>
+
+    <script src="https://webgl2fundamentals.org/webgl/resources/twgl-full.min.js"></script>
+    <script src="https://webgl2fundamentals.org/webgl/resources/m4.js"></script>
+    <script src="menu.js"></script><script src="trabalho.js"></script>
+
+</body>
+</html>
